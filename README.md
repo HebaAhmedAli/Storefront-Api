@@ -1,7 +1,7 @@
 # Storefront-Backend-Project
 
-- The backend is running on port 3000
-- The database is running on port 5432
+- The backend is running on port (3000)
+- The database is running on port (5432)
 
 To install packages:
 - npm i
