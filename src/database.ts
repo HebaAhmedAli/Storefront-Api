@@ -21,7 +21,7 @@ if (ENV === 'dev') {
         password: POSTGRES_PASSWORD,
         database: POSTGRES_DB,
     });
-} else if (ENV === 'test') {
+} else {
     client = new Pool({
         host: POSTGRES_HOST,
         user: POSTGRES_USER,
