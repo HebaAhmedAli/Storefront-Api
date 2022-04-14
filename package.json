@@ -9,17 +9,18 @@
     "lint:f": "eslint src/**/*.ts --fix",
     "format": "prettier --write src/**/*.ts",
     "jasmine": "jasmine",
-    "test": "npm run build && npm run jasmine",
-    "test2": "ENV=test db-migrate --env test up && jasmine-ts && db-migrate db:drop test",
-    "dev": "npm run build && nodemon src/index.ts",
-    "start": "npm run build && node dist/index.js"
+    "test": "npm run build && set ENV=test && db-migrate --env test up && jasmine --random=false && db-migrate --env test reset",
+    "dev": "npm run build && nodemon src/server.ts",
+    "start": "npm run build && node dist/server.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/bcrypt": "^5.0.0",
     "@types/express": "^4.17.13",
     "@types/jasmine": "^4.0.0",
+    "@types/jsonwebtoken": "^8.5.8",
     "@types/pg": "^8.6.5",
     "@types/supertest": "^2.0.11",
     "@typescript-eslint/eslint-plugin": "^5.15.0",
@@ -38,9 +39,11 @@
     "typescript": "^4.6.2"
   },
   "dependencies": {
+    "bcrypt": "^5.0.1",
     "cors": "^2.8.5",
     "dotenv": "^16.0.0",
     "express": "^4.17.3",
+    "jsonwebtoken": "^8.5.1",
     "pg": "^8.7.3"
   }
 }

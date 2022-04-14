@@ -1,5 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
-import jwt from 'jsonwebtoken';
+import jwt, { JwtPayload } from 'jsonwebtoken';
+import { User } from '../types/user';
 
 const verifyAuthToken = (req: Request, res: Response, next: NextFunction) => {
     try {
@@ -9,7 +10,7 @@ const verifyAuthToken = (req: Request, res: Response, next: NextFunction) => {
             const token = authorizationHeader?.split(' ')[1];
             if (!bearer || !token) {
                 res.status(401);
-                next(new Error('Invalid Authorization token.'));
+                next('Invalid Authorization token.');
             }
             const decoded = jwt.verify(
                 String(token),
@@ -17,16 +18,30 @@ const verifyAuthToken = (req: Request, res: Response, next: NextFunction) => {
             );
             if (!decoded) {
                 res.status(401);
-                next(new Error('Invalid Authorization token.'));
+                next('Invalid Authorization token.');
+            }
+            if (
+                (req.url.includes('users') &&
+                    req.method === 'DELETE' &&
+                    req.params.id &&
+                    +req.params.id !==
+                        ((decoded as JwtPayload).user as User).id) ||
+                (req.url.includes('users') &&
+                    req.method === 'PUT' &&
+                    req.body.id &&
+                    +req.body.id !== ((decoded as JwtPayload).user as User).id)
+            ) {
+                res.status(401);
+                next('You are unauthorized to update/delete this user.');
             }
             next();
         } else {
             res.status(401);
-            next(new Error('Authorization header is required.'));
+            next('Authorization header is required.');
         }
     } catch (err) {
         res.status(401);
-        next(new Error(JSON.stringify(err)));
+        next(JSON.stringify(err));
     }
 };
 
