@@ -1,8 +1,6 @@
-import { JwtPayload } from 'jsonwebtoken';
 import supertest from 'supertest';
 import app from '../../server';
 import { User } from '../../types/user';
-import jwt from 'jsonwebtoken';
 import client from '../../database';
 
 const request = supertest(app);
@@ -34,11 +32,7 @@ describe('Testing users API', () => {
         it('Should return 200 when taking all user paramters.', async () => {
             const res = await request.post('/users').send(user);
             authorizationToken = res.body.token;
-            const decoded = jwt.verify(
-                String(authorizationToken),
-                String(process.env.TOKEN_SECRET)
-            );
-            user.id = (decoded as JwtPayload).user.id;
+            user.id = res.body.id;
             expect(res.status).toBe(200);
         });
     });
@@ -50,13 +44,12 @@ describe('Testing users API', () => {
             });
             expect(res.status).toBe(401);
         });
-        it('Should return 200 and the user object with the generated token (same as the one returned from the create) if the username and password are correct.', async () => {
+        it('Should return 200 and the user object with the generated token if the username and password are correct.', async () => {
             const res = await request.post('/users/authenticate').send({
                 username: 'nameT',
                 password: 'passT',
             });
             expect(res.body.token).toBeDefined();
-            expect(authorizationToken).toBe(res.body.token);
             expect(res.status).toBe(200);
         });
     });
