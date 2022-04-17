@@ -34,6 +34,22 @@ const verifyAuthToken = (req: Request, res: Response, next: NextFunction) => {
                 res.status(401);
                 next('You are unauthorized to update/delete this user.');
             }
+            if (
+                req.body?.userId &&
+                +req.body.userId !== ((decoded as JwtPayload).user as User).id
+            ) {
+                res.status(401);
+                next('You are unauthorized to create an order by this userId.');
+            }
+            if (
+                req.params?.userId &&
+                +req.params.userId !== ((decoded as JwtPayload).user as User).id
+            ) {
+                res.status(401);
+                next(
+                    'You are unauthorized to show the order created by this user.'
+                );
+            }
             next();
         } else {
             res.status(401);

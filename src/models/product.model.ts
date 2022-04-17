@@ -12,7 +12,7 @@ export class ProductModel {
                 product.price,
                 product.category,
             ]);
-            const createdProduct = result.rows[0];
+            const createdProduct: Product = result.rows[0];
             conn.release();
             return createdProduct;
         } catch (err) {

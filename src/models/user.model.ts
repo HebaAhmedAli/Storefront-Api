@@ -18,7 +18,7 @@ export class UserModel {
                 user.lastname,
                 hashedPassword,
             ]);
-            const createdUser = result.rows[0];
+            const createdUser: User = result.rows[0];
             conn.release();
             return createdUser;
         } catch (err) {
