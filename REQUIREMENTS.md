@@ -13,12 +13,12 @@ These are the notes from a meeting with the frontend developer that describe wha
 
 | Endpoint                | Request    | Parameters                                           | Requires Token | Usage                 |
 | ----------------------- | ---------- | ---------------------------------------------------- | -------------- | --------------------- |
-| **/users**              | **GET**    | **N/A**                                              | **True**       | **List Users**        |
-| **/users**              | **POST**   | **username, firstname, lastname, password**          | **False**      | **Create User**       |
-| **/users**              | **PUT**    | **id, username, firstname, lastname, password**      | **True**       | **Update User**       |
-| **/users/:id**          | **DELETE** | **id**                                               | **True**       | **Delete User**       |
+| **/users**              | **GET**    | **N/A**                                              | **True**       | **List users**        |
+| **/users**              | **POST**   | **username, firstname, lastname, password**          | **False**      | **Create user**       |
+| **/users**              | **PUT**    | **id, username, firstname, lastname, password**      | **True**       | **Update user**       |
+| **/users/:id**          | **DELETE** | **id**                                               | **True**       | **Delete user**       |
 | **/users/:id**          | **GET**    | **id**                                               | **True**       | **Show user by Id**   |
-| **/users/authenticate** | **POST**   | **username, password**                               | **False**      | **Authenticate User** |
+| **/users/authenticate** | **POST**   | **username, password**                               | **False**      | **Authenticate user** |
 
 #### Products:
 
