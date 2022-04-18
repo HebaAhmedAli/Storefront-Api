@@ -29,17 +29,14 @@ These are the notes from a meeting with the frontend developer that describe wha
 | **/products/:id** | **GET**    | **id**                        | **False**      | **Show product by Id** |
 
 #### Orders:
-   app.post('/orders', verifyAuthToken, create);
-    app.post('/orders/addProduct', verifyAuthToken, addProductToOrder);
-    app.get('/orders/:userId', verifyAuthToken, getCurrentOrderByUser);
-    app.put('/orders/status', verifyAuthToken, updateOrderStatus);
 
 | Endpoint               | Request  | Parameters                                               | RequiresToken  | Usage                     |
 | ---------------------- | -------- | -------------------------------------------------------- | -------------- | ------------------------  |
-| **/orders**            | **GET**  | **N/A**                      | **False**      | **List orders**           |
-| **/orders**            | **POST** | **status, userId, orderProducts[{productId, quantity}]** | **True**  | **Create order**         |
-| **/orders/:userId**    | **GET**  | **userIAd**                                              | **False** | **Get order by user**    |
-| **/orders/addProduct** | **POST** | **orderId, productId, quantity**                         | **True**  | **Add product to order** |
+| **/orders**            | **POST** | **status, userId, orderProducts[{productId, quantity}]** | **True**       | **Create order**          |
+| **/orders/:userId**    | **GET**  | **userId**                                               | **True**       | **Get order by user**     |
+| **/orders/addProduct** | **POST** | **orderId, productId, quantity**                         | **True**       | **Add product to order**  |
+| **/orders/status**     | **PUT**  | **orderId, newStatus**                                   | **True**       | **Update order status**  |
+
 
 ## Data Schema
 
