@@ -11,11 +11,24 @@ To create the database run the following:
 - CREATE DATABASE store;
 - CREATE DATABASE store_test;
 
-If you want to connect to the database:
-- \c store
+Create a .env file for the database connection using the the template in the file
+- ENV_EXAMPLE
 
-To Run the up migrations:
-- npx db-migrate up
+And replace the following fields with your information
+'''
+POSTGRES_HOST=127.0.0.1
+POSTGRES_USER=postgres
+POSTGRES_PASSWORD=your_postgres_password
+POSTGRES_DB=store
+POSTGRES_TEST_DB=store_test
+ENV=dev
+BCRYPT_PASSWORD=your_bcrypt_pass
+SALT_ROUNDS=10
+TOKEN_SECRET=your_jwt_secret
+'''
+
+Then use the following command to migrate the tables automatically to your new database
+- db-migrate up
 
 To build the code:
 - npm run build
