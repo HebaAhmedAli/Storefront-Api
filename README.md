@@ -15,7 +15,7 @@ Create a .env file for the database connection using the the template in the fil
 - ENV_EXAMPLE
 
 And replace the following fields with your information
-'''
+```
 POSTGRES_HOST=127.0.0.1
 POSTGRES_USER=postgres
 POSTGRES_PASSWORD=your_postgres_password
@@ -25,7 +25,7 @@ ENV=dev
 BCRYPT_PASSWORD=your_bcrypt_pass
 SALT_ROUNDS=10
 TOKEN_SECRET=your_jwt_secret
-'''
+```
 
 Then use the following command to migrate the tables automatically to your new database
 - db-migrate up
