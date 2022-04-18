@@ -11,10 +11,10 @@ To create the database run the following:
 - CREATE DATABASE store;
 - CREATE DATABASE store_test;
 
-Create a .env file for the database connection using the the template in the file
+Create a .env file for the database connection using the the template in the file:
 - ENV_EXAMPLE
 
-And replace the following fields with your information
+And replace the following fields with your information:
 ```
 POSTGRES_HOST=127.0.0.1
 POSTGRES_USER=postgres
@@ -27,7 +27,7 @@ SALT_ROUNDS=10
 TOKEN_SECRET=your_jwt_secret
 ```
 
-Then use the following command to migrate the tables automatically to your new database
+Then use the following command to migrate the tables automatically to your new database:
 - db-migrate up
 
 To build the code:
